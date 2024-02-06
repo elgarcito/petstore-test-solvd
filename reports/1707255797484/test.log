@@ -1,0 +1,62 @@
+[2024-02-06 09:43:17] [1] [INFO] [TestNG] Running:
+  C:\Users\54249\AppData\Local\JetBrains\IntelliJIdea2023.2\temp-testng-customsuite.xml
+
+[2024-02-06 09:43:21] [1] [INFO] Base properties loaded: api/pet/pet.properties
+[2024-02-06 09:43:27] [1] [INFO] Request method:	POST
+Request URI:	https://petstore.swagger.io/v2/pet
+Request params:	<none>
+Query params:	<none>
+Form params:	<none>
+Path params:	<none>
+Multiparts:		<none>
+Cookies:		<none>
+Headers:		Accept=*/*
+				Content-Type=application/json; charset=UTF-8
+Body:
+{
+    "id": "1",
+    "category": {
+        "id": "1",
+        "name": "Cat"
+    },
+    "name": "Cat",
+    "photoUrls": [
+        "none"
+    ],
+    "tags": [
+        {
+            "id": "1",
+            "name": "Cats"
+        }
+    ],
+    "status": "Valid"
+}
+HTTP/1.1 200 OK
+Date: Tue, 06 Feb 2024 21:43:27 GMT
+Content-Type: application/json
+Transfer-Encoding: chunked
+Connection: keep-alive
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: GET, POST, DELETE, PUT
+Access-Control-Allow-Headers: Content-Type, api_key, Authorization
+Server: Jetty(9.2.9.v20150224)
+
+{
+    "id": 1,
+    "category": {
+        "id": 1,
+        "name": "Cat"
+    },
+    "name": "Cat",
+    "photoUrls": [
+        "none"
+    ],
+    "tags": [
+        {
+            "id": 1,
+            "name": "Cats"
+        }
+    ],
+    "status": "Valid"
+}
+
