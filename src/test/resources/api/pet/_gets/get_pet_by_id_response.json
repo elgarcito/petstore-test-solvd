@@ -1,0 +1,17 @@
+{
+  "id": "type:Integer",
+  "category": {
+    "id": "type:Integer",
+    "name": "type:String"
+  },
+  "name": "type:String",
+  "photoUrls":
+  "type:JSONArray",
+  "tags": [
+    {
+      "id": "type:Integer",
+      "name": "type:String"
+    }
+  ],
+  "status": "type:String"
+}
