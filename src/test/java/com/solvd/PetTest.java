@@ -1,7 +1,6 @@
 package com.solvd;
 
-import com.solvd.api.GetPetById;
-import com.solvd.api.PostPetMethod;
+import com.solvd.api.*;
 import com.solvd.api.domain.Pet;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.carina.api.apitools.validation.JsonComparatorContext;
