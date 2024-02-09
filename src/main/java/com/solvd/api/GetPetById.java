@@ -9,7 +9,7 @@ import com.zebrunner.carina.api.http.HttpMethodType;
 import com.zebrunner.carina.api.http.HttpResponseStatusType;
 
 @Endpoint(url = "${config.api_url}/pet/${petId}", methodType = HttpMethodType.GET)
-@ResponseTemplatePath(path = "api/pet/get_pet_by_id_response.json")
+@ResponseTemplatePath(path = "api/pet/_gets/get_pet_by_id_response.json")
 @SuccessfulHttpStatus(status = HttpResponseStatusType.OK_200)
 public class GetPetById extends AbstractApiMethodV2 {
     public GetPetById(Integer id) {

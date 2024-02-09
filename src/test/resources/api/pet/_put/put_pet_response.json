@@ -6,7 +6,7 @@
   },
   "name": "type:String",
   "photoUrls":
-  "type:JSONArray",
+    "type:JSONArray",
   "tags": [
     {
       "id": "type:Integer",
