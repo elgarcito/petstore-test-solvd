@@ -1,29 +1,18 @@
 package com.solvd;
 
+import com.solvd.api.DeletePetMethod;
 import com.solvd.api.GetPetById;
 import com.solvd.api.PostPetMethod;
+import com.solvd.api.PutPetMethod;
 import com.solvd.api.domain.Pet;
 import com.zebrunner.carina.api.apitools.validation.JsonComparatorContext;
 import com.zebrunner.carina.api.http.HttpResponseStatusType;
 import org.testng.annotations.Test;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-
 public class PetTest {
-    @Test
+    @Test(description = "Verify post pet with valid data")
     public void verifyValidPostPetTest() {
-      /*  Pet pet = new Pet();
-        pet.setName("Doggie");
-        pet.setCategory("Dog");
-        pet.setTags("Dog");
-        pet.setPhotoUrls("");
-        pet.setPetId(1);
-        pet.setStatus("OK");*/
-
         PostPetMethod postPetMethod = new PostPetMethod();
-        //postPetMethod.addProperty("pet", pet);
         postPetMethod.setProperties("api/pet/pet.properties");
 
         postPetMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
@@ -35,7 +24,7 @@ public class PetTest {
 
     }
 
-    @Test
+    @Test(description = "Verify get pet with valid data")
     public void verifyValidGetPetByIdTest() {
         Pet pet = new Pet();
         pet.setPetId(100);
@@ -50,16 +39,50 @@ public class PetTest {
         JsonComparatorContext comparatorContext = JsonComparatorContext.context();
         getPetById.validateResponse(comparatorContext);
     }
-/*
-    @Test
+
+    @Test(description = "Verify post pet with invalid data")
     public void verifyInvalidGetPetByIdTest() {
         Pet petInvalid = new Pet();
-        petInvalid.setPetId(1);
+        petInvalid.setPetId(-1);
 
         GetPetById getPetById = new GetPetById(petInvalid.getPetId());
         getPetById.addProperty("pet", petInvalid);
+        getPetById.setResponseTemplate("api/pet/_deletes/delete_pet_response.json");
 
-        getPetById.expectResponseStatus(HttpResponseStatusType.OK_200);
+        getPetById.expectResponseStatus(HttpResponseStatusType.NOT_FOUND_404);
         getPetById.callAPI();
-    }*/
+
+        //create autenticate
+        JsonComparatorContext comparatorContext = JsonComparatorContext.context();
+        getPetById.validateResponse(comparatorContext);
+    }
+
+    @Test(description = "Verify get pet with valid data")
+    public void verifyValidDeletePetByIdTest() {
+        Pet pet = new Pet();
+        pet.setPetId(1);
+
+        DeletePetMethod deletePetMethod = new DeletePetMethod(pet.getPetId());
+        deletePetMethod.addProperty("pet", pet);
+
+        deletePetMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
+        deletePetMethod.callAPI();
+
+        //create autenticate
+        JsonComparatorContext comparatorContext = JsonComparatorContext.context();
+        deletePetMethod.validateResponse(comparatorContext);
+    }
+    @Test(description = "Verify put pet with valid data")
+    public void verifyValidPutByIdTest() {
+        PutPetMethod putPetMethod = new PutPetMethod();
+        putPetMethod.setProperties("api/pet/pet.properties");
+
+        putPetMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
+        putPetMethod.callAPI();
+
+        //create autenticate
+        JsonComparatorContext comparatorContext = JsonComparatorContext.context();
+        putPetMethod.validateResponse(comparatorContext);
+
+    }
 }
