@@ -1,6 +1,6 @@
 {
     "id": "${id}",
-    "username": "${username}",
+    "username": "${userName}",
     "firstName": "${firstName}",
     "lastName": "${lastName}",
     "email": "${email}",

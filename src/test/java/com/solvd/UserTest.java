@@ -10,35 +10,35 @@ import org.testng.annotations.Test;
 
 public class UserTest extends AbstractTest {
 
-    @Test
-    @MethodOwner(owner = "Sebastian F")
-    public void test1InvalidDeleteUser() {
+    @MethodOwner(owner = "sebafermanelli")
+    @Test(description = "Deletes a user that does not exist", priority = 1)
+    public void testInvalidDeleteUser() {
         User user = new User();
-        user.setUserName("sebafermanelli");
+        user.setUserName("ThisIsUserName");
 
         DeleteUserMethod deleteUser = new DeleteUserMethod(user.getUserName());
         deleteUser.expectResponseStatus(HttpResponseStatusType.NOT_FOUND_404);
         deleteUser.callAPI();
     }
 
-    @Test
-    @MethodOwner(owner = "Sebastian F")
-    public void test2ValidCreateUser() {
-        PostUserMethod postUser = new PostUserMethod();
-        postUser.setProperties("api/user/user.properties");
+    @MethodOwner(owner = "lucasp149")
+    @Test(description = "Create a new user with the user.properties", priority = 2)
+    public void verifyCreateUser() {
+        PostCreateUserMethod postCreateUserMethod = new PostCreateUserMethod();
+        postCreateUserMethod.setProperties("api/user/user.properties");
 
-        postUser.expectResponseStatus(HttpResponseStatusType.OK_200);
-        postUser.callAPI();
+        postCreateUserMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
+        postCreateUserMethod.callAPI();
 
         JsonComparatorContext comparatorContext = JsonComparatorContext.context();
-        postUser.validateResponse(comparatorContext);
+        postCreateUserMethod.validateResponse(comparatorContext);
     }
 
-    @Test
-    @MethodOwner(owner = "Sebastian F")
-    public void test3ValidGetUserByUsername() {
+    @MethodOwner(owner = "sebafermanelli")
+    @Test(description = "Verify if the username provided is a valid user", priority = 3)
+    public void testValidGetUserByUsername() {
         User user = new User();
-        user.setUserName("sebafermanelli");
+        user.setUserName("ThisIsUserName");
         GetUserMethod getUser = new GetUserMethod(user.getUserName());
 
         getUser.expectResponseStatus(HttpResponseStatusType.OK_200);
@@ -48,26 +48,25 @@ public class UserTest extends AbstractTest {
         getUser.validateResponse(comparatorContext);
     }
 
-//    @Test
-//    @MethodOwner(owner = "Sebastian F")
-//    public void test4ValidLogin() {
-//        User user = new User();
-//        user.setUsername("sebafermanelli");
-//        user.setPassword("seba123");
-//
-//        GetLoginUserMethod getLoginUser = new GetLoginUserMethod(user.getUsername(), user.getPassword());
-//        getLoginUser.expectResponseStatus(HttpResponseStatusType.OK_200);
-//        getLoginUser.callAPI();
-//
-//        JsonComparatorContext comparatorContext = JsonComparatorContext.context();
-//        getLoginUser.validateResponse(comparatorContext);
-//    }
+    @MethodOwner(owner = "lucasp149")
+    @Test(description = "Verify if the username and password provided is valid", priority = 4)
+    public void verifySuccessfulLogin() {
+        User userLogin = new User();
+        userLogin.setUserName("thename");
+        userLogin.setPassword("thepass");
+        GetUserLoginMethod getUserLoginMethod = new GetUserLoginMethod(userLogin.getUserName(), userLogin.getPassword());
 
-    @Test
-    @MethodOwner(owner = "Sebastian F")
-    public void test5ValidUpdateUser() {
+        getUserLoginMethod.callAPI();
+
+        JsonComparatorContext comparatorContext = JsonComparatorContext.context();
+        getUserLoginMethod.validateResponse(comparatorContext);
+    }
+
+    @MethodOwner(owner = "sebafermanelli")
+    @Test(description = "Update a user that is already registered", priority = 5)
+    public void testValidUpdateUser() {
         User user = new User();
-        user.setUserName("sebafermanelli");
+        user.setUserName("ThisIsUserName");
 
         PutUserMethod putUser = new PutUserMethod(user.getUserName());
         putUser.setProperties("api/user/user.properties");
@@ -78,22 +77,29 @@ public class UserTest extends AbstractTest {
         putUser.validateResponse(comparatorContext);
     }
 
-//    @Test
-//    @MethodOwner(owner = "Sebastian F")
-//    public void test6ValidLogout() {
-//        GetLogoutUserMethod getLogoutUser = new GetLogoutUserMethod();
-//        getLogoutUser.expectResponseStatus(HttpResponseStatusType.OK_200);
-//        getLogoutUser.callAPI();
-//
-//        JsonComparatorContext comparatorContext = JsonComparatorContext.context();
-//        getLogoutUser.validateResponse(comparatorContext);
-//    }
+    @MethodOwner(owner = "lucasp149")
+    @Test(description = "Logout an authenticated user", priority = 6)
+    public void verifySuccessfulLogout() {
+        User userLogin = new User();
+        userLogin.setUserName("thename");
+        userLogin.setPassword("thepass");
+        GetUserLoginMethod getUserLoginMethod = new GetUserLoginMethod(userLogin.getUserName(), userLogin.getPassword());
 
-    @Test
-    @MethodOwner(owner = "Sebastian F")
-    public void test7ValidDeleteUser() {
+        getUserLoginMethod.callAPI();
+
+        GetUserLogoutMethod getUserLogoutMethod = new GetUserLogoutMethod();
+
+        getUserLogoutMethod.callAPI();
+
+        JsonComparatorContext comparatorContext = JsonComparatorContext.context();
+        getUserLogoutMethod.validateResponse(comparatorContext);
+    }
+
+    @MethodOwner(owner = "sebafermanelli")
+    @Test(description = "Deletes a user that exist", priority = 7)
+    public void testValidDeleteUser() {
         User user = new User();
-        user.setUserName("sebafermanelli");
+        user.setUserName("ThisIsUserName");
 
         DeleteUserMethod deleteUser = new DeleteUserMethod(user.getUserName());
         deleteUser.expectResponseStatus(HttpResponseStatusType.OK_200);
