@@ -1,5 +1,5 @@
 {
-  "code": 200,
+  "code": "type:Integer",
   "type": "type:String",
   "message": "type:String"
 }

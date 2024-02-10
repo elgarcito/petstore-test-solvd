@@ -7,10 +7,13 @@ import com.solvd.api.domain.User;
 import com.zebrunner.carina.api.apitools.validation.JsonComparatorContext;
 import com.zebrunner.carina.api.http.HttpResponseStatusType;
 import com.zebrunner.carina.core.IAbstractTest;
+import com.zebrunner.carina.core.registrar.ownership.MethodOwner;
 import org.testng.annotations.Test;
 
 public class LoginTest implements IAbstractTest {
+
     @Test
+    @MethodOwner(owner = "lucasp149")
     public void verifySuccessfulLogin() {
         User userLogin = new User();
         userLogin.setUserName("thename");
@@ -24,6 +27,7 @@ public class LoginTest implements IAbstractTest {
     }
 
     @Test
+    @MethodOwner(owner = "lucasp149")
     public void verifySuccessfulLogout() {
         User userLogin = new User();
         userLogin.setUserName("thename");
@@ -41,6 +45,7 @@ public class LoginTest implements IAbstractTest {
     }
 
     @Test
+    @MethodOwner(owner = "lucasp149")
     public void verifyCreateUser () {
         PostCreateUserMethod postCreateUserMethod = new PostCreateUserMethod();
         postCreateUserMethod.setProperties("api/user/user.properties");
