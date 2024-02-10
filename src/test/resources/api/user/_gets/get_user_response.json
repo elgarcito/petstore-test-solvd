@@ -1,0 +1,10 @@
+{
+    "id": "type:Integer",
+    "username": "type:String",
+    "firstName": "type:String",
+    "lastName": "type:String",
+    "email": "type:String",
+    "password": "type:String",
+    "phone": "type:String",
+    "userStatus": "type:Integer"
+}
