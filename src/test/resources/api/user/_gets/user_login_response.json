@@ -1,5 +1,5 @@
 {
   "code": 200,
-  "type": "${type:String}",
-  "message": "${type:String}"
+  "type": "type:String",
+  "message": "type:String"
 }
